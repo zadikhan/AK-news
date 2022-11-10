@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import NewsItem from './NewsItem';
 import  Spinner  from './spinner';
 import PropTypes from 'prop-types';
+
+
 export default class News extends Component {
 
   static defaultProps ={
@@ -28,22 +30,22 @@ static propTypes ={
   }
 async updateNews()
 {
-  this.props.setProgress(10);
+
 
   this.setState({loading: true})    
     console.log("this cdm");
     const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=5381166695784a70b752143c927c3ff0&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     let data = await fetch(url);
-    this.props.setProgress(30);
+  
     let parsedData = await data.json()
-    this.props.setProgress(10);
+  
     console.log(parsedData);
     this.setState({
       articles: parsedData.articles,
       totalResults:parsedData.totalResults,
       loading:false 
     })
-    this.props.setProgress(100);
+  
 
 }
 
